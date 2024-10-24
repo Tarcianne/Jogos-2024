@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pequena Gotilha</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+        #gameArea {
+            border: 2px solid #333;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            background-color: #fff;
+        }
+        #message {
+            margin-top: 10px;
+        }
+        .response-button {
+            margin-top: 10px;
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .response-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="gameArea">
+        <h1>Bem-vindo ao Jogo!</h1>
+        <p id="character">👾 Olá, jogador! Eu sou a Pequena Gotilha, mas pode me chamar de Gota! Estou aqui para me divertir com você.</p>
+        <button onclick="startGame()">Começar o Jogo</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function startGame() {
+            document.getElementById('message').innerHTML = "O jogo começou! O que você deseja fazer?";
+            showResponses();
+        }
+
+        function showResponses() {
+            const responses = [
+                "Explorar a caverna",
+                "Lutar contra um monstro",
+                "Conversar com um viajante",
+                "Sair do jogo"
+            ];
+
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML += "<br>";
+
+            responses.forEach(response => {
+                const button = document.createElement('button');
+                button.innerText = response;
+                button.className = 'response-button';
+                button.onclick = () => handleResponse(response);
+                messageDiv.appendChild(button);
+            });
+        }
+
+        function handleResponse(response) {
+            let characterMessage;
+
+            switch (response) {
+                case "Explorar a caverna":
+                    characterMessage = "👾 Você entrou na caverna e encontrou um tesouro!";
+                    break;
+                case "Lutar contra um monstro":
+                    characterMessage = "👾 O monstro foi derrotado! Você é forte!";
+                    break;
+                case "Conversar com um viajante":
+                    characterMessage = "👾 O viajante lhe contou histórias incríveis!";
+                    break;
+                case "Sair do jogo":
+                    characterMessage = "👾 Até logo, jogador! Espero que volte logo!";
+                    break;
+                default:
+                    characterMessage = "👾 Não entendi sua escolha.";
+                    break;
+            }
+
+            document.getElementById('character').innerText = characterMessage;
+
+            // Limpa as opções de resposta após uma escolha
+            document.getElementById('message').innerHTML = "";
+        }
+    </script>
+
+</body>
+</html>
+
+
+           
